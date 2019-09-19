@@ -1,0 +1,81 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nuke-build/nuke/master/source/Nuke.CodeGeneration/schema.json",
+  "references": [
+    "https://github.com/aws/aws-extensions-for-dotnet-cli"
+  ],
+  "name": "DotNetLambdaTools",
+  "officialUrl": "https://github.com/aws/aws-extensions-for-dotnet-cli",
+  "help": "This package adds commands to the .NET Core CLI that can be used to manage AWS Lambda functions including deploying a function from the CLI. The AWS Toolkit for Visual Studio also uses Amazon.Lambda.Tools to deploy Lambda functions.",
+  "packageId": "Amazon.Lambda.Tools",
+  "packageExecutable": "dotnet-lambda.dll",
+  "tasks": [
+    {
+      "postfix": "DeployFunction",
+      "definiteArgument": "deploy-function",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "FunctionName",
+            "type": "string",
+            "format": "{value}",
+            "help": "The name of the function to be updated"
+          }
+        ]
+      }
+    },
+    {
+      "postfix": "PackageFunction",
+      "definiteArgument": "package",
+      "settingsClass": {
+      }
+    },
+    {
+      "postfix": "ListFunctions",
+      "definiteArgument": "list-functions",
+      "settingsClass": {}
+    },
+    {
+      "postfix": "PublishLayer",
+      "definiteArgument": "publish-layer",
+      "settingsClass": {
+        "properties": [
+          {
+            "name": "LayerName",
+            "type": "string",
+            "format": "{value}",
+            "help": "The name of the layer"
+          }
+        ]
+      }
+    }
+  ],
+  "commonTaskProperties": [
+    {
+      "name": "Region",
+      "type": "string",
+      "format": "--region {value}",
+      "help": "The region to connect to AWS services, if not set region will be detected from the environment."
+    },
+    {
+      "name": "AwsAccessKey",
+      "type": "string",
+      "format": "--aws-access-key-id {value}",
+      "secret": true,
+      "help": "The AWS access key id. Used when setting credentials explicitly instead of using --profile."
+    },
+    {
+      "name": "AwsSecretKey",
+      "type": "string",
+      "format": "--aws-secret-key {value}",
+      "secret": true,
+      "help": "The AWS access key id. Used when setting credentials explicitly instead of using --profile."
+    },
+    {
+      "name": "AwsSessionToken",
+      "type": "string",
+      "format": "--aws-session-token {value}",
+      "secret": true,
+      "help": " The AWS session token. Used when setting credentials explicitly instead of using --profile."
+    }
+  ]
+}
